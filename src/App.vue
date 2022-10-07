@@ -2,6 +2,7 @@
 // Import your components here:
 import HelloJOHAK from "./components/HelloJOHAK.vue";
 import ToDoList from "./components/ToDoList.vue";
+import ComputedDemo from "./components/computedDemo.vue";
 function hello(){
   alert("Uwe");
 }
@@ -9,7 +10,7 @@ function hello(){
 
 <template>
   <!-- Use your components here: -->
-  <ToDoList></ToDoList>
+ <ToDoList></ToDoList>
   <br>
   <button @click="hello">Click Me!!</button>
   <div>
