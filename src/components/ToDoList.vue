@@ -1,12 +1,12 @@
 <script setup>
-import { Result } from "postcss";
+import ToDo from "./ToDo.vue";
 import { ref, computed } from "vue";
 const newItem = ref("");
 const filterd_list = computed(() => {
     let result = [];
     for(let i = 0; i < list.value.length; i++)
     {
-        if(list.value[i].toLowerCase().includes(filter.value.toLowerCase()))      
+        if(list.value[i].name.toLowerCase().includes(filter.value.toLowerCase()))      
         {
             result.push(list.value[i]);
         }
@@ -20,13 +20,23 @@ const list = ref([
 ]);
 function addButton()
 {
-    list.value.push(newItem.value);
+    list.value.push(
+        {
+        id: Date.now().toString(16),
+        name: newItem.value,       
+    }
+    );
     newItem.value = "";
     
 }
-function deleteButton(index)
+function deleteButton(id)
 {
-list.value.splice(index,1);
+    for(let i = 0; i < list.value.length; i++)
+    {
+        if(list.value[i].id === id)      
+        {list.value.splice(i,1);
+        }
+    }
 }
 
 
@@ -40,11 +50,13 @@ list.value.splice(index,1);
     <br>
     <input type = "text" placeholder ="filter list" v-model="filter">
         <ul>
-            <li v-for="(item, index) in filterd_list" :key="item">
-                {{index}} - {{item}} 
-                    <button @click="deleteButton(index)">X</button>
-            </li>
-           
+            
+            <ToDo 
+            v-for="item in filterd_list" 
+            :name="item.name" 
+            :id="item.id"
+            :key="item.id" 
+            @remove="deleteButton(id)"></ToDo>
         </ul>
 </template >
 
