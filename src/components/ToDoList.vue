@@ -56,7 +56,7 @@ function deleteButton(id)
             :name="item.name" 
             :id="item.id"
             :key="item.id" 
-            @remove="deleteButton(id)"></ToDo>
+            @remove="deleteButton"></ToDo>
         </ul>
 </template >
 

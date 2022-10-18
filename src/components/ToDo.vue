@@ -4,6 +4,7 @@ const emit = defineEmits(["remove"]);
 </script>
 
 <template>
-    {{name}} 
+    <li>{{name}} 
          <button @click="emit('remove', props.id)">X</button>
+        </li>
 </template>
